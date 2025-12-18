@@ -49,7 +49,7 @@ const App = () => {
       setPhotos((prev) => (append ? [...prev, ...incoming] : incoming));
       setCurrentQuery(query);
       setPage(pageToLoad);
-      // if fewer than requested per_page were returned, there is no more data
+      
       setHasMore(incoming.length === 24);
 
     } catch (err) {
