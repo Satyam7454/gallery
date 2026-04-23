@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "./assets/Satya-removebg-preview.png";
+import logo from "./assets/logo.png";
 import "remixicon/fonts/remixicon.css";
 
 
@@ -88,7 +88,7 @@ const App = () => {
               <p className="text-sm text-gray-400">Discover and download beautiful photos</p>
             </div>
           </div>
-          <div className="hidden md:block text-sm text-gray-400">Powered by Pexels</div>
+          {/* <div className="hidden md:block text-sm text-gray-400">Powered by Pexels</div> */}
         </div>
       </header> 
 
@@ -198,26 +198,37 @@ const App = () => {
       <div>
           <footer className="bg-gray-800 border-t border-gray-700 mt-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div className="text-center md:text-left">
-                  <p className="text-gray-400 text-sm">
-                    &copy; {new Date().getFullYear()} Satya Gallery. All rights reserved.
-                  </p>
-                  <p className="text-gray-500 text-xs mt-1">
-                    Powered by Pexels API
-                  </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                {/* Logo and copyright */}
+                <div className="flex flex-col items-center md:items-start gap-3">
+                  <img src={logo} alt="Satya logo" className="w-14 h-auto" /> 
+                  <div className="text-center md:text-left">
+                    <p className="text-gray-400 text-sm">
+                      &copy; {new Date().getFullYear()} Satya Gallery. All rights reserved.
+                    </p>
+                    <p className="text-gray-500 text-xs mt-1">
+                      Powered by Unsplash API
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-6">
-                  <a href="https://www.instagram.com" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
+                
+                {/* Center text for medium and up */}
+                <div className="hidden md:flex justify-center text-center text-gray-400 text-xs">
+                  <p>Developer By Satyam<span className="text-red-500">❤</span></p>
+                </div>
+                
+                {/* Social links */}
+                <div className="flex items-center justify-center md:justify-end gap-6">
+                  <a href="https://www.instagram.com/18_satya_techie" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
                     <i className="ri-instagram-line text-xl"></i>
                   </a>
-                  <a href="https://www.facebook.com" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
+                  <a href="https://www.facebook.com/satyam.shankhwar.73" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
                     <i className="ri-facebook-line text-xl"></i>
                   </a>
-                  <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
+                  <a href="https://www.linkedin.com/in/satyam-k-a89b40283" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
                     <i className="ri-linkedin-line text-xl"></i>
                   </a>
-                  <a href="https://github.com" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
+                  <a href="https://github.com/Satyam7454" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
                     <i className="ri-github-line text-xl"></i>
                   </a>
                 </div>
