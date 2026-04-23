@@ -78,21 +78,21 @@ const App = () => {
 
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
-      <header className="bg-white shadow-sm rounded-md mt-6 mx-4 sm:mx-6">
+    <div className="min-h-screen bg-gray-900 text-gray-100 font-sans pt-0">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-gray-800 shadow-lg rounded-none mt-0 mx-0 border-b border-gray-700">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <img src={logo} alt="Satya logo" className="w-14 h-auto" />
             <div>
-              <h1 className="text-2xl font-bold text-gray-800">Satya Gallery</h1>
-              <p className="text-sm text-gray-500">Discover and download beautiful photos</p>
+              <h1 className="text-2xl font-bold text-gray-100">Satya Gallery</h1>
+              <p className="text-sm text-gray-400">Discover and download beautiful photos</p>
             </div>
           </div>
-          <div className="hidden md:block text-sm text-gray-600">Powered by Pexels</div>
+          <div className="hidden md:block text-sm text-gray-400">Powered by Pexels</div>
         </div>
       </header> 
 
-      <div className="max-w-4xl mx-auto mt-6 px-4 sm:px-6">
+      <div className="max-w-4xl mx-auto mt-24 px-4 sm:px-6">
         <form onSubmit={handleSubmit} className="relative">
           <i className="ri-search-line absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
           <input
@@ -101,14 +101,14 @@ const App = () => {
             id="search"
             value={term}
             onChange={(e) => setTerm(e.target.value)}
-            className="w-full pl-12 pr-36 h-12 rounded-full border border-gray-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
+            className="w-full pl-12 pr-36 h-12 rounded-full border border-gray-600 bg-gray-800 text-gray-100 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400"
             placeholder="Search images (e.g. cats, mountains, pets)"
           />
           {term && (
             <button
               type="button"
               onClick={() => setTerm('')}
-              className="absolute right-28 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute right-28 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-300"
               aria-label="Clear"
             >
               <i className="ri-close-line text-xl"></i>
@@ -123,45 +123,45 @@ const App = () => {
         </form>
       </div> 
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-8 flex items-center justify-between">
         <div>
-          {loading && photos.length === 0 && <p className="text-sm text-gray-500">Loading images...</p>}
-          {error && <p className="text-red-600">{error}</p>}
+          {loading && photos.length === 0 && <p className="text-sm text-gray-400">Loading images...</p>}
+          {error && <p className="text-red-400">{error}</p>}
           {!loading && !error && (
-            <p className="text-sm text-gray-500">
-              Showing results for <strong>{currentQuery}</strong> — {photos.length} images
+            <p className="text-sm text-gray-400">
+              Showing results for <strong className="text-gray-100">{currentQuery}</strong> — {photos.length} images
             </p>
           )}
         </div>
         <div className="flex items-center gap-3">
-          <button onClick={() => { setTerm(''); fetchData('people',1,false); }} className="text-sm text-gray-600 hover:underline">Reset</button>
+          <button onClick={() => { setTerm(''); fetchData('people',1,false); }} className="text-sm text-gray-400 hover:text-gray-200 hover:underline">Reset</button>
         </div>
       </div> 
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-12">
         {loading && photos.length === 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {Array.from({ length: 8 }).map((_, idx) => (
-              <div key={idx} className="h-72 bg-white rounded-lg shadow-sm animate-pulse" />
+              <div key={idx} className="h-72 bg-gray-800 rounded-lg shadow-sm animate-pulse" />
             ))}
           </div>
         ) : photos.length === 0 ? (
-          <div className="text-center py-16 text-gray-500">No images found for <strong>{currentQuery}</strong>.</div>
+          <div className="text-center py-16 text-gray-400">No images found for <strong className="text-gray-100">{currentQuery}</strong>.</div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {photos.map((item) => (
-              <div key={item.id} className="group rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition duration-300 bg-white transform hover:-translate-y-1">
-                <div className="relative h-72 bg-gray-100">
+              <div key={item.id} className="group rounded-lg overflow-hidden border border-gray-700 shadow-sm hover:shadow-lg transition duration-300 bg-gray-800 transform hover:-translate-y-1">
+                <div className="relative h-72 bg-gray-700">
                   <img src={item.src.large} alt={item.alt || item.photographer} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-start justify-end p-3 gap-2">
-                    <a href={item.src.original} target="_blank" rel="noreferrer" className="bg-white/90 text-gray-800 p-2 rounded-md text-sm">View</a>
-                    <button onClick={() => imageDownload(item)} className="bg-white/90 text-gray-800 p-2 rounded-md text-sm">Download</button>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-start justify-end p-3 gap-2">
+                    <a href={item.src.original} target="_blank" rel="noreferrer" className="bg-gray-700/90 text-gray-100 p-2 rounded-md text-sm hover:bg-gray-600">View</a>
+                    <button onClick={() => imageDownload(item)} className="bg-gray-700/90 text-gray-100 p-2 rounded-md text-sm hover:bg-gray-600">Download</button>
                   </div>
                 </div>
                 <div className="p-4 flex items-center justify-between">
                   <div>
-                    <a href={item.url} target="_blank" rel="noreferrer" className="text-sm font-medium text-gray-800 hover:underline">{item.photographer}</a>
-                    <p className="text-xs text-gray-500">{item.width}×{item.height}</p>
+                    <a href={item.url} target="_blank" rel="noreferrer" className="text-sm font-medium text-gray-100 hover:text-blue-400 hover:underline">{item.photographer}</a>
+                    <p className="text-xs text-gray-400">{item.width}×{item.height}</p>
                   </div>
                 </div>
               </div>
@@ -190,8 +190,40 @@ const App = () => {
             {loading ? 'Loading...' : 'Load More'}
           </button>
         ) : (
-          <p className="text-sm text-gray-500">No more results</p>
+          <p className="text-sm text-gray-400">No more results</p>
         )}
+      </div>
+
+      {/* footer */}
+      <div>
+          <footer className="bg-gray-800 border-t border-gray-700 mt-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="text-center md:text-left">
+                  <p className="text-gray-400 text-sm">
+                    &copy; {new Date().getFullYear()} Satya Gallery. All rights reserved.
+                  </p>
+                  <p className="text-gray-500 text-xs mt-1">
+                    Powered by Pexels API
+                  </p>
+                </div>
+                <div className="flex items-center gap-6">
+                  <a href="https://www.instagram.com" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
+                    <i className="ri-instagram-line text-xl"></i>
+                  </a>
+                  <a href="https://www.facebook.com" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
+                    <i className="ri-facebook-line text-xl"></i>
+                  </a>
+                  <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
+                    <i className="ri-linkedin-line text-xl"></i>
+                  </a>
+                  <a href="https://github.com" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
+                    <i className="ri-github-line text-xl"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </footer>
       </div>
     </div>
   );
